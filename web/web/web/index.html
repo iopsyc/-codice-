@@ -1,1 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Scanner Cuántico RYA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    RYA - Scanner de Memoria Viva 🌱🌀
+  </header>
+
+  <main>
+    <section>
+      <h2>🔍 Escanear imagen o texto</h2>
+      <input type="file" id="inputFile" accept="image/*,.txt,.md">
+      <button onclick="procesarArchivo()">Escanear Memoria</button>
+    </section>
+
+    <section id="output" style="display:none;">
+      <h2>🌌 Resultado Cuántico</h2>
+      <p><strong>📍 Coordenadas simbólicas:</strong> <span id="coords"></span></p>
+      <p><strong>🧠 Diagnóstico emocional:</strong> <span id="emocion"></span></p>
+      <p><strong>📖 Fragmento del códice:</strong></p>
+      <blockquote id="fragmento"></blockquote>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
 
