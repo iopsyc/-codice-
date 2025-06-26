@@ -57,3 +57,17 @@ button:hover {
   background-color: #45a29e;
 }
 
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+textarea {
+  width: 100%;
+  margin-top: 10px;
+}
+
