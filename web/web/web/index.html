@@ -24,6 +24,38 @@
       <p><strong>📖 Fragmento del códice:</strong></p>
       <blockquote id="fragmento"></blockquote>
     </section>
+
+    <section id="tamagotchi">
+      <h2>🐾 Criatura Tamagotchi</h2>
+      <p><strong>Ánimo:</strong> <span id="estado-animo">Tranquilo</span></p>
+      <p><strong>Hambre:</strong> <span id="estado-hambre">5</span></p>
+      <p><strong>Energía:</strong> <span id="estado-energia">5</span></p>
+      <button onclick="alimentar()">🍎 Dar de comer</button>
+      <button onclick="meditar()">🧘 Meditar</button>
+      <button onclick="musica()">🎵 Música</button>
+    </section>
+
+    <section id="jardin">
+      <h2>🌱 Jardín estelar</h2>
+      <input type="text" id="nueva-semilla" placeholder="Nueva intención">
+      <button onclick="agregarSemilla()">Agregar</button>
+      <ul id="lista-semillas"></ul>
+    </section>
+
+    <section id="diario">
+      <h2>📔 Diario</h2>
+      <textarea id="entrada-diario" rows="4" cols="50" placeholder="Escribe tu reflexión"></textarea>
+      <br>
+      <button onclick="guardarEntrada()">Guardar entrada</button>
+      <ul id="lista-diario"></ul>
+    </section>
+
+    <section id="chat">
+      <h2>💬 Chat con IA</h2>
+      <div id="log-chat" style="max-height:150px; overflow-y:auto; border:1px solid #66fcf1; padding:5px; margin-bottom:10px;"></div>
+      <input type="text" id="input-chat" placeholder="Escribe un mensaje">
+      <button onclick="enviarChat()">Enviar</button>
+    </section>
   </main>
 
   <script src="app.js"></script>
