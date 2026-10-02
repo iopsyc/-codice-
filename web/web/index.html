@@ -2,63 +2,207 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Scanner Cuántico RYA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <title>RYA · Criatura de Memoria Viva</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E%E2%9C%A8%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    RYA - Scanner de Memoria Viva 🌱🌀
+  <div class="polvo" aria-hidden="true"></div>
+
+  <header class="cabecera">
+    <span class="marca">RYA</span>
+    <span class="lema">Scanner de Memoria Viva</span>
   </header>
 
   <main>
-    <section>
-      <h2>🔍 Escanear imagen o texto</h2>
-      <input type="file" id="inputFile" accept="image/*,.txt,.md">
-      <button onclick="procesarArchivo()">Escanear Memoria</button>
+    <!-- ===== Dispositivo Tamagotchi ===== -->
+    <section id="tamagotchi" class="escena" aria-labelledby="titulo-criatura">
+      <h1 id="titulo-criatura" class="titulo-criatura">Criatura Tamagotchi</h1>
+      <p class="subtitulo">Guardiana de la luz dorada</p>
+
+      <div class="dispositivo" id="dispositivo" data-animo="Tranquilo">
+        <span class="sensor" aria-hidden="true"></span>
+        <span class="boton-lateral" aria-hidden="true"></span>
+
+        <div class="pantalla" id="pantalla">
+          <div class="ambiente" aria-hidden="true"></div>
+          <div class="destellos" aria-hidden="true"></div>
+
+          <div class="criatura" id="criatura">
+            <img src="assets/criatura.jpg" alt="Criatura dorada con gorro de oso sosteniendo una luz" width="630" height="920">
+            <span class="luz" aria-hidden="true"></span>
+          </div>
+
+          <div class="burbuja" id="burbuja" aria-hidden="true"></div>
+          <div class="efectos" id="efectos" aria-hidden="true"></div>
+
+          <div class="barra-estado" aria-hidden="true">
+            <span class="nombre-mascota"><i class="pulso"></i>RYA</span>
+            <span class="camara"></span>
+            <span class="hora" id="hora">--:--</span>
+          </div>
+
+          <div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+          <div class="hud">
+            <div class="hud-animo">
+              <span class="hud-etiqueta">Estado</span>
+              <span class="chip-animo"><i class="icono-animo" id="icono-animo">✦</i><span id="estado-animo">Tranquilo</span></span>
+            </div>
+            <div class="medidor" data-medidor="animo">
+              <div class="medidor-cabecera"><span>Ánimo</span><span><b id="valor-animo">6</b>/10</span></div>
+              <div class="medidor-pista"><div class="medidor-relleno" id="barra-animo"></div></div>
+            </div>
+            <div class="medidor" data-medidor="hambre">
+              <div class="medidor-cabecera"><span>Hambre</span><span><b id="estado-hambre">5</b>/10</span></div>
+              <div class="medidor-pista"><div class="medidor-relleno" id="barra-hambre"></div></div>
+            </div>
+            <div class="medidor" data-medidor="energia">
+              <div class="medidor-cabecera"><span>Energía</span><span><b id="estado-energia">5</b>/10</span></div>
+              <div class="medidor-pista"><div class="medidor-relleno" id="barra-energia"></div></div>
+            </div>
+          </div>
+          <div class="reflejo-pantalla" aria-hidden="true"></div>
+        </div>
+
+        <div class="controles">
+          <button type="button" class="tecla" id="btn-alimentar" data-accion="alimentar" aria-label="Dar de comer">
+            <span class="tecla-cuerpo"><span class="tecla-icono">🍎</span></span>
+            <span class="tecla-texto">Dar de comer</span>
+          </button>
+          <button type="button" class="tecla" id="btn-meditar" data-accion="meditar" aria-label="Meditar">
+            <span class="tecla-cuerpo"><span class="tecla-icono">🧘</span></span>
+            <span class="tecla-texto">Meditar</span>
+          </button>
+          <button type="button" class="tecla" id="btn-musica" data-accion="musica" aria-label="Música">
+            <span class="tecla-cuerpo"><span class="tecla-icono">🎵</span></span>
+            <span class="tecla-texto">Música</span>
+          </button>
+        </div>
+        <span class="argolla" aria-hidden="true"></span>
+      </div>
+
+      <svg class="cordon" viewBox="0 0 140 230" aria-hidden="true" focusable="false">
+        <defs>
+          <pattern id="trenza" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
+            <rect width="6" height="6" fill="#19191b"/>
+            <ellipse cx="3" cy="3" rx="2.3" ry="1.05" fill="#404044"/>
+            <circle cx="4.9" cy="1" r=".5" fill="#a0a0a6"/>
+          </pattern>
+          <radialGradient id="esfera" cx=".38" cy=".3" r=".75">
+            <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+            <stop offset=".45" stop-color="#fff" stop-opacity="0"/>
+            <stop offset=".8" stop-color="#000" stop-opacity=".45"/>
+            <stop offset="1" stop-color="#000" stop-opacity=".85"/>
+          </radialGradient>
+          <linearGradient id="cilindro" x1="0" x2="1">
+            <stop offset="0" stop-color="#000" stop-opacity=".8"/>
+            <stop offset=".3" stop-color="#fff" stop-opacity=".06"/>
+            <stop offset=".55" stop-color="#000" stop-opacity="0"/>
+            <stop offset="1" stop-color="#000" stop-opacity=".85"/>
+          </linearGradient>
+          <linearGradient id="desvanecer" x1="0" y1="0" x2="0" y2="1">
+            <stop offset=".62" stop-color="#fff"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <mask id="mascaraCordon"><rect width="140" height="230" fill="url(#desvanecer)"/></mask>
+        </defs>
+        <g mask="url(#mascaraCordon)" stroke-linecap="round">
+          <!-- cordón azul -->
+          <rect x="66" y="0" width="8" height="64" rx="3" fill="#2c44c4"/>
+          <rect x="66" y="0" width="8" height="64" rx="3" fill="url(#cilindro)"/>
+          <!-- colas -->
+          <rect x="46" y="110" width="23" height="130" rx="11" fill="url(#trenza)"/>
+          <rect x="46" y="110" width="23" height="130" rx="11" fill="url(#cilindro)"/>
+          <rect x="71" y="110" width="23" height="130" rx="11" fill="url(#trenza)"/>
+          <rect x="71" y="110" width="23" height="130" rx="11" fill="url(#cilindro)"/>
+          <!-- nudo -->
+          <ellipse cx="70" cy="96" rx="40" ry="33" fill="#0c0c0d"/>
+          <g fill="none">
+            <path d="M44 120L96 122" stroke="#000" stroke-width="23"/>
+            <path d="M44 120L96 122" stroke="url(#trenza)" stroke-width="20"/>
+            <path d="M39 99L101 96" stroke="#000" stroke-width="25"/>
+            <path d="M39 99L101 96" stroke="url(#trenza)" stroke-width="22"/>
+            <path d="M47 76L93 72" stroke="#000" stroke-width="23"/>
+            <path d="M47 76L93 72" stroke="url(#trenza)" stroke-width="20"/>
+            <path d="M54 66C66 86 76 104 86 126" stroke="#000" stroke-width="21"/>
+            <path d="M54 66C66 86 76 104 86 126" stroke="url(#trenza)" stroke-width="18"/>
+          </g>
+          <ellipse cx="70" cy="97" rx="43" ry="37" fill="url(#esfera)"/>
+        </g>
+</svg>
     </section>
 
-    <section id="output" style="display:none;">
-      <h2>🌌 Resultado Cuántico</h2>
-      <p><strong>📍 Coordenadas simbólicas:</strong> <span id="coords"></span></p>
-      <p><strong>🧠 Diagnóstico emocional:</strong> <span id="emocion"></span></p>
-      <p><strong>📖 Fragmento del códice:</strong></p>
-      <blockquote id="fragmento"></blockquote>
-    </section>
+    <!-- ===== Paneles ===== -->
+    <section class="paneles" aria-label="Herramientas del códice">
+      <div class="pestanas" role="tablist" aria-label="Secciones">
+        <button type="button" role="tab" class="pestana" id="tab-escaner" aria-controls="panel-escaner" aria-selected="true">🔍 <span>Escáner</span></button>
+        <button type="button" role="tab" class="pestana" id="tab-jardin" aria-controls="jardin" aria-selected="false" tabindex="-1">🌱 <span>Jardín</span></button>
+        <button type="button" role="tab" class="pestana" id="tab-diario" aria-controls="diario" aria-selected="false" tabindex="-1">📔 <span>Diario</span></button>
+        <button type="button" role="tab" class="pestana" id="tab-chat" aria-controls="chat" aria-selected="false" tabindex="-1">💬 <span>Chat</span></button>
+      </div>
 
-    <section id="tamagotchi">
-      <h2>🐾 Criatura Tamagotchi</h2>
-      <p><strong>Ánimo:</strong> <span id="estado-animo">Tranquilo</span></p>
-      <p><strong>Hambre:</strong> <span id="estado-hambre">5</span></p>
-      <p><strong>Energía:</strong> <span id="estado-energia">5</span></p>
-      <button onclick="alimentar()">🍎 Dar de comer</button>
-      <button onclick="meditar()">🧘 Meditar</button>
-      <button onclick="musica()">🎵 Música</button>
-    </section>
+      <div class="panel" id="panel-escaner" role="tabpanel" aria-labelledby="tab-escaner">
+        <h2>Escanear imagen o texto</h2>
+        <p class="ayuda">Sube una imagen o un texto y RYA leerá su memoria vibracional.</p>
+        <div class="fila">
+          <label class="archivo">
+            <input type="file" id="inputFile" accept="image/*,.txt,.md">
+            <span class="archivo-boton">Elegir archivo</span>
+            <span class="archivo-nombre" id="nombre-archivo">Ningún archivo seleccionado</span>
+          </label>
+          <button type="button" class="boton-oro" data-accion="procesarArchivo">Escanear memoria</button>
+        </div>
 
-    <section id="jardin">
-      <h2>🌱 Jardín estelar</h2>
-      <input type="text" id="nueva-semilla" placeholder="Nueva intención">
-      <button onclick="agregarSemilla()">Agregar</button>
-      <ul id="lista-semillas"></ul>
-    </section>
+        <section id="output" class="resultado" style="display:none;">
+          <h3>🌌 Resultado cuántico</h3>
+          <dl>
+            <dt>📍 Coordenadas simbólicas</dt>
+            <dd id="coords"></dd>
+            <dt>🧠 Diagnóstico emocional</dt>
+            <dd id="emocion"></dd>
+            <dt>📖 Fragmento del códice</dt>
+            <dd><blockquote id="fragmento"></blockquote></dd>
+          </dl>
+        </section>
+      </div>
 
-    <section id="diario">
-      <h2>📔 Diario</h2>
-      <textarea id="entrada-diario" rows="4" cols="50" placeholder="Escribe tu reflexión"></textarea>
-      <br>
-      <button onclick="guardarEntrada()">Guardar entrada</button>
-      <ul id="lista-diario"></ul>
-    </section>
+      <section class="panel" id="jardin" role="tabpanel" aria-labelledby="tab-jardin" hidden>
+        <h2>Jardín estelar</h2>
+        <p class="ayuda">Siembra intenciones y acompaña su germinación.</p>
+        <div class="fila">
+          <input type="text" id="nueva-semilla" placeholder="Nueva intención" autocomplete="off">
+          <button type="button" class="boton-oro" data-accion="agregarSemilla">Agregar</button>
+        </div>
+        <ul id="lista-semillas" class="lista"></ul>
+      </section>
 
-    <section id="chat">
-      <h2>💬 Chat con IA</h2>
-      <div id="log-chat" style="max-height:150px; overflow-y:auto; border:1px solid #66fcf1; padding:5px; margin-bottom:10px;"></div>
-      <input type="text" id="input-chat" placeholder="Escribe un mensaje">
-      <button onclick="enviarChat()">Enviar</button>
+      <section class="panel" id="diario" role="tabpanel" aria-labelledby="tab-diario" hidden>
+        <h2>Diario</h2>
+        <p class="ayuda">Escribe lo que la luz te mostró hoy.</p>
+        <textarea id="entrada-diario" rows="4" placeholder="Escribe tu reflexión"></textarea>
+        <button type="button" class="boton-oro" data-accion="guardarEntrada">Guardar entrada</button>
+        <ul id="lista-diario" class="lista"></ul>
+      </section>
+
+      <section class="panel" id="chat" role="tabpanel" aria-labelledby="tab-chat" hidden>
+        <h2>Chat con IA</h2>
+        <div id="log-chat" class="log-chat" aria-live="polite"></div>
+        <div class="fila">
+          <input type="text" id="input-chat" placeholder="Escribe un mensaje" autocomplete="off">
+          <button type="button" class="boton-oro" data-accion="enviarChat">Enviar</button>
+        </div>
+      </section>
     </section>
   </main>
+
+  <footer class="pie">RYA · Códice de memoria viva</footer>
 
   <script src="app.js"></script>
 </body>
 </html>
-
